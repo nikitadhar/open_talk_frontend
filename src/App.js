@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { useMemo } from 'react';
+import { BrowserRouter, Routes, Route,Navigate  } from 'react-router-dom';
+import PrimarySearchAppBar from './screens';
+import useMediaQuery from "@mui/material/useMediaQuery";
+import SignIn from './screens/SignIn';
+import SignUp from './screens/signup';
+import AppTheme from "./components/shared-theme/AppTheme"
+import { SnackbarProvider } from './modules/context/SnackbarProvider';
+import { useAuth } from './modules/context/AuthContext';
+import axios from "axios";
+import { Toaster } from 'react-hot-toast';
+// axios.defaults.baseURL = "http://localhost:5000/api/v1";
+axios.defaults.baseURL = "https://open-talk-backend.onrender.com/api/v1";
+axios.defaults.withCredentials = true;
+function App(props) {
+  const auth = useAuth();
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppTheme {...props}>
+       <Toaster position="top-right" />
+      <SnackbarProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                auth?.isLoggedIn && auth.user ? (
+                  <PrimarySearchAppBar />
+                ) : (
+                  <Navigate to="/signIn" />
+                )
+              }
+            />
+
+            <Route
+              path="/signIn"
+              element={
+                auth?.isLoggedIn ? (
+                  <Navigate to="/" />
+                ) : (
+                  <SignIn />
+                )
+              }
+            />
+
+            <Route
+              path="/signUp"
+              element={
+                auth?.isLoggedIn ? (
+                  <Navigate to="/" />
+                ) : (
+                  <SignUp />
+                )
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </SnackbarProvider>
+    </AppTheme>
+
   );
 }
 
