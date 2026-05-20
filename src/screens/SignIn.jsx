@@ -1,10 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Divider from '@mui/material/Divider';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import Link from '@mui/material/Link';
@@ -18,7 +15,6 @@ import IconButton from '@mui/material/IconButton';
 import { Avatar } from '@mui/material';
 import { Card, SignContainer } from '../components/StyledComponents';
 import { useNavigate } from 'react-router-dom';
-import { post,get } from '../services/api-services';
 import { useSnackbar } from '../modules/context/SnackbarProvider';
 import { useAuth } from '../modules/context/AuthContext';
 import toast from 'react-hot-toast';
@@ -31,12 +27,9 @@ export default function SignIn(props) {
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
-  const { showSnackbar } = useSnackbar();
   const auth = useAuth();
   const navigate = useNavigate()
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  
 
   const handleClose = () => {
     setOpen(false);

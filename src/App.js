@@ -1,7 +1,5 @@
-import { useMemo } from 'react';
 import { BrowserRouter, Routes, Route,Navigate  } from 'react-router-dom';
 import PrimarySearchAppBar from './screens';
-import useMediaQuery from "@mui/material/useMediaQuery";
 import SignIn from './screens/SignIn';
 import SignUp from './screens/signup';
 import AppTheme from "./components/shared-theme/AppTheme"

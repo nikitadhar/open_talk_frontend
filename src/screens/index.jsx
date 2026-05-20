@@ -4,21 +4,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import MenuIcon from '@mui/icons-material/Menu';
-import MailIcon from '@mui/icons-material/Mail';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Avatar, Button } from '@mui/material';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import ColorModeSelect from '../components/shared-theme/ColorModeSelect';
-import ChatInput from '../components/ChatInput';
-import { deleteUserChats, get, getUserChats, sendChatRequest } from '../services/api-services';
+import { deleteUserChats,getUserChats, sendChatRequest } from '../services/api-services';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../modules/context/AuthContext';
 import ChatItem from '../components/chat/ChatItem';
@@ -28,16 +19,16 @@ import toast from "react-hot-toast";
 export default function PrimarySearchAppBar(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    // const isMenuOpen = Boolean(anchorEl);
+    // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const [chatMessages, setChatMessages] = React.useState([]);
     const navigate = useNavigate();
     const inputRef = React.useRef(null);
     const auth = useAuth();
     const [loading, setLoading] = React.useState(false)
-    const handleProfileMenuOpen = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    // const handleProfileMenuOpen = (event) => {
+    //     setAnchorEl(event.currentTarget);
+    // };
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
@@ -45,27 +36,27 @@ export default function PrimarySearchAppBar(props) {
         setAnchorEl(null);
         handleMobileMenuClose();
     };
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
-    const menuId = 'primary-search-account-menu';
-    const mobileMenuId = 'primary-search-account-menu-mobile';
+    // const handleMobileMenuOpen = (event) => {
+    //     setMobileMoreAnchorEl(event.currentTarget);
+    // };
+    // const menuId = 'primary-search-account-menu';
+    // const mobileMenuId = 'primary-search-account-menu-mobile';
     const drawerWidth = 240;
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);
-    const handleDrawerClose = () => {
-        setIsClosing(true);
-        setMobileOpen(false);
-    };
+    // const handleDrawerClose = () => {
+    //     setIsClosing(true);
+    //     setMobileOpen(false);
+    // };
     const handleDrawerTransitionEnd = () => {
         setIsClosing(false);
     };
-    const handleDrawerToggle = () => {
-        if (!isClosing) {
-            setMobileOpen(!mobileOpen);
-        }
-    };
+    // const handleDrawerToggle = () => {
+    //     if (!isClosing) {
+    //         setMobileOpen(!mobileOpen);
+    //     }
+    // };
     const handleogout = () => {
         auth.logout();
         navigate("/signIn")
@@ -100,7 +91,7 @@ const handleKeyDown = (e) => {
 
 
     // Remove this const when copying and pasting into your project.
-    const container = window !== undefined ? () => window().document.body : undefined;
+    // const container = window !== undefined ? () => window().document.body : undefined;
     const handleDeleteChats = async () => {
         try {
             toast.loading("Deleting Chats", { id: "deletechats" });

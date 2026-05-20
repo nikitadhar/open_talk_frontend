@@ -13,9 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import { Avatar } from '@mui/material';
 import { Card, SignContainer } from '../components/StyledComponents';
-import { post } from '../services/api-services';
 import { useSnackbar } from '../modules/context/SnackbarProvider';
-import { useState } from 'react';
 import { useAuth } from '../modules/context/AuthContext';
 
 
